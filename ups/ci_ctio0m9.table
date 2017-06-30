@@ -1,0 +1,9 @@
+setupRequired(obs_ctio0m9)
+setupRequired(pipe_drivers)
+setupRequired(pipe_tasks)
+setupRequired(sconsUtils)
+setupRequired(afw)
+setupRequired(pipe_base)
+setupRequired(pex_config)
+
+envPrepend(PYTHONPATH, ${PRODUCT_DIR}/python)

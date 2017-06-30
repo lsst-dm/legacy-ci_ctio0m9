@@ -1,0 +1,9 @@
+.sconf_temp
+.sconsign.dblite
+config.log
+.scons
+DATA
+CALIB
+*.pyc
+bin/
+job_job.log
