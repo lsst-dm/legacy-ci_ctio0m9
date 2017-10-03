@@ -1,5 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
+import atexit
 import sys
 import traceback
 
@@ -14,14 +15,14 @@ class TestTask(CmdLineTask):
     ConfigClass = Config  # Nothing to configure!
 
     def __init__(self, *args, **kwargs):
-        super(TestTask, self).__init__(*args, **kwargs)
+        CmdLineTask.__init__(self, *args, **kwargs)
         self._failures = 0
+        atexit.register(self.finalise)
 
-    def __del__(self):
+    def finalise(self):
         if self._failures > 0:
             self.log.fatal("%d tests failed")
             sys.exit(1)
-        CmdLineTask.__del__(self)
 
     @classmethod
     def _makeArgumentParser(cls):
