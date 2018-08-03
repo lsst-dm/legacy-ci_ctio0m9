@@ -63,7 +63,7 @@ class CalibValidationTask(TestTask):
                             help="Calib type to test")
         return parser
 
-    def run(self, dataRef, calibType):
+    def runDataRef(self, dataRef, calibType):
         filename = dataRef.get(calibType + "_filename")
         self.require("/rerun/" not in filename, "%s has been ingested" % (calibType,))
         calib = dataRef.get(calibType, immediate=True)
@@ -74,7 +74,7 @@ class CalibValidationTask(TestTask):
 class ProcessCcdValidationTask(TestTask):
     _DefaultName = "processCcdValidation"
 
-    def run(self, dataRef):
+    def runDataRef(self, dataRef):
         for dataset in ("calexp", "calexpBackground", "icSrc", "src", "srcMatch"):
             self.require(dataRef.datasetExists(dataset), "%s exists" % (dataset,))
 
